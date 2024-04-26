@@ -1,0 +1,38 @@
+class TreeNode:
+    def __init__(self,value):
+        self.value=value
+        self.left=None
+        self.right= None
+def left_right_view(root,side):
+    if not root:
+        return{}
+    result={}
+    queue=[(root,0)]
+    while queue:
+        node, level=queue.pop(0)
+        if level not in result:
+            result[level]=[]
+        result[level].append(node.value)
+        if node.left:
+            queue.append((node.left, level + 1))
+        if node.right:
+            queue.append((node.right, level + 1))
+    if side=='L':
+        print("\nLeft view")
+    else:
+        print("\nRight view")
+    for k in result.keys():
+        if(side=='L'):
+            print(result[k][0],end=",")
+        elif(side=='R'):
+            print(result[K][-1],end=",")
+
+#Constructing a sample binary tree
+root = TreeNode('A')
+root.left = TreeNode('B')
+root.right = TreeNode('C')
+root.left.left = TreeNode('D')
+root.left.right = TreeNode('E')
+root.right.left = TreeNode('F')
+root.right.right = TreeNode('G')
+root.right.right.left = TreeNode('H')
